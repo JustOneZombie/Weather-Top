@@ -1,0 +1,26 @@
+Reading(r1):
+  code: 800
+  temp: 0.5
+  windSpeed: 3.5
+Reading(r2):
+  code: 600
+  temp: 6.0
+  windSpeed: 2
+Reading(r3):
+  code: 700
+  temp: 8.0
+  windSpeed: 1
+Reading(r4):
+  code: 200
+  temp: 0.5
+  windSpeed: 3.5
+Station(s1):
+  name: Carlow
+  readings:
+    - r1
+    - r2
+Station(s2):
+  name: Wicklow
+  readings:
+    - r3
+    - r4
