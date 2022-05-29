@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+#{extends 'main.html' /}
+#{set title:'Station' /}
+
+#{menu id:"dashboard"/}
+
+
+<section class="ui segment ">
+  <h2 class="ui header">
+    ${station.name}
+  </h2>
+  <section class =  "ui segment">
+    <div class="ui equal width padded grid container">
+      <div class="uniform column">
+        <div class="ui inverted segment">
+          <div class="left aligned text">${station.name}</div>
+          <br><br>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui black inverted segment">
+          <div class="left aligned text">Weather<br>${station.codeOutput}</div>
+          <br>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui black inverted segment">
+          <div class="left aligned text">Temperature</div>
+          ${station.tempCel}&degC<br>
+          ${station.tempFar}&degF<br>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui black inverted segment">
+          <div class="left aligned text">Wind</div>
+          ${station.windOutput} Bft<br>${station.windDirection}<br>${station.windChill}
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui black inverted segment">
+          <div class="left aligned text">Pressure</div>
+          ${station.latestPressure}<br><br>
+        </div>
+      </div>
+    </div>
+  </section>
+  #{listreadings station: station /}
+  #{addreading station:station /}
+</section>

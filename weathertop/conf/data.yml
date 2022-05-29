@@ -1,22 +1,26 @@
 Reading(r1):
   code: 800
-  temp: 0.5
+  temperature: 0.5
   windSpeed: 3.5
+  windDirection: 220
   pressure: 1001
 Reading(r2):
   code: 600
-  temp: 6.0
+  temperature: 6.0
   windSpeed: 2
+  windDirection: 200
   pressure: 1004
 Reading(r3):
   code: 700
-  temp: 8.0
+  temperature: 8.0
   windSpeed: 1
+  windDirection: 90
   pressure: 1000
 Reading(r4):
   code: 200
-  temp: 0.5
+  temperature: 0.5
   windSpeed: 3.5
+  windDirection: 120
   pressure: 999
 Station(s1):
   name: Carlow

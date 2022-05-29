@@ -2,40 +2,58 @@
 #{set title:'Dashboard' /}
 
 #{menu id:"dashboard"/}
-
 #{list items:stations, as:'station'}
 <section class="ui segment">
   <h2 class="ui header">
     ${station.name}
   </h2>
-  <div class="ui equal width padded grid container"style="color: lightgrey">
-    <div class="uniform column">
-      <div class = "ui inverted segment">
-        <div class = "left aligned text">${station.name}</div><br><br>
-      </div>
-    </div>
-    <div class="column">
-      <div class = "ui black inverted segment">
-        <div class = "left aligned text">Weather<br>${station.codeOutput}</div><br>
-      </div>
-    </div>
-    <div class="column">
-    <div class = "ui black inverted segment">
-      <div class = "left aligned text">Temperature</div>${station.tempCel}&degC<br>
-        ${station.tempFar}&degF<br>
-    </div>
-  </div>
-    <div class="column">
-    <div class = "ui black inverted segment">
-      <div class = "left aligned text">Wind</div>${station.windOutput} Bft<br><br>
-    </div>
-  </div>
-    <div class="column">
-    <div class = "ui black inverted segment">
-      <div class = "left aligned text">Pressure</div>${station.latestPressure}<br><br>
-    </div>
-  </div>
-  </div>
-  #{listreadings station:station/}
-</section>
+  <a href="/stations/${station.id}"> View </a></section>
 #{/list}
+#{addstation station:station /}
+
+
+
+<!--//FOR SAFETY-->
+<!--#{extends 'main.html' /}-->
+<!--#{set title:'Dashboard' /}-->
+
+<!--#{menu id:"dashboard"/}-->
+
+<!--#{list items:stations, as:'station'}-->
+<!--<section class="ui segment">-->
+<!--  <h2 class="ui header">-->
+<!--    ${station.name}-->
+<!--  </h2>-->
+<!--  <div class="ui equal width padded grid container" style="color: lightgrey">-->
+<!--    <div class="uniform column">-->
+<!--      <div class = "ui inverted segment">-->
+<!--        <div class = "left aligned text">${station.name}</div><br><br>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="column">-->
+<!--      <div class = "ui black inverted segment">-->
+<!--        <div class = "left aligned text">Weather<br>${station.codeOutput}</div><br>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="column">-->
+<!--      <div class = "ui black inverted segment">-->
+<!--        <div class = "left aligned text">Temperature</div>${station.tempCel}&degC<br>-->
+<!--        ${station.tempFar}&degF<br>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="column">-->
+<!--      <div class = "ui black inverted segment">-->
+<!--        <div class = "left aligned text">Wind</div>${station.windOutput} Bft<br>${station.windDirection}<br>${station.windChill}-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="column">-->
+<!--      <div class = "ui black inverted segment">-->
+<!--        <div class = "left aligned text">Pressure</div>${station.latestPressure}<br><br>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  #{listreadings station:station/}-->
+<!--</section>-->
+<!--#{/list}-->
+
+
