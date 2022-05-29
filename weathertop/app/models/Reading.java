@@ -3,7 +3,7 @@ package models;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
-
+//FIELDS
 @Entity
 public class Reading extends Model {
   public int code;
@@ -11,7 +11,7 @@ public class Reading extends Model {
   public double windSpeed;
   public double pressure;
   public double windDirection;
-
+//METHODS
   public Reading(int code, double temperature, double windSpeed, double windDirection, double pressure) {
     this.temperature = temperature;
     this.code = code;
@@ -20,7 +20,7 @@ public class Reading extends Model {
     this.windDirection = windDirection;
 
   }
-
+//GETTERS
   public int getCode() {
     return code;
   }

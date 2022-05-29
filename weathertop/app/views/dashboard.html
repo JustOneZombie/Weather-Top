@@ -7,7 +7,56 @@
   <h2 class="ui header">
     ${station.name}
   </h2>
-  <a href="/stations/${station.id}"> View </a></section>
+  <section class="ui column">
+    <section class="ui segment">
+      <div class="ui equal width padded grid container">
+        <div class="uniform column">
+          <div class="ui inverted segment">
+            <div class="left aligned text">${station.name}</div>
+            <br><br><br>
+            <br><br>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui black inverted segment">
+            <div class="left aligned text">Weather
+              <i class=" large fitted ${station.iconCode}" style="float: right"></i>
+              <br>${station.codeOutput}
+            </div>
+            <br><br><br>
+            <br>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui black inverted segment">
+            <div class="left aligned text">Temperature</div>
+            ${station.tempCel}&degC<br>
+            ${station.tempFar}&degF<br>
+            Max Temp: ${station.maxTemp} &degC<br>
+            Min Temp: ${station.minTemp} &degC<br><br>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui black inverted segment">
+            <div class="left aligned text">Wind</div>
+            ${station.windOutput} Bft<br>
+            ${station.windDirection}<br>
+            Wind Chill: ${station.windChill}<br>
+            Max speed: ${station.maxWind}<br>
+            Min speed: ${station.minWind}
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui black inverted segment">
+            <div class="left aligned text">Pressure</div>
+            Latest: ${station.latestPressure}<br>
+            Max: ${station.maxPressure}<br>
+            Min: ${station.minPressure}<br><br><br>
+          </div>
+        </div>
+      </div>
+      <a href="/stations/${station.id}"><i class="th list large icon"></i></a></section>
+    </section>
 #{/list}
 #{addstation station:station /}
 

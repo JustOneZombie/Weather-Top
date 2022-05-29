@@ -254,39 +254,45 @@ public class Station extends Model {
 
   //Min-Max Methods
   public double maxTemp() {
-    Reading maxTemp = readings.stream().max(Comparator.comparing(Reading::getTemp)).get();
-
-    return maxTemp.getTemp();
+    if (readings.size() != 0) {
+      Reading maxTemp = readings.stream().max(Comparator.comparing(Reading::getTemp)).get();
+      return maxTemp.getTemp();
+    }else return 0.0;
   }
 
   public double minTemp() {
+    if (readings.size() != 0) {
     Reading minTemp = readings.stream().min(Comparator.comparing(Reading::getTemp)).get();
-
     return minTemp.getTemp();
+    }else return 0.0;
   }
 
   public double maxWind() {
+    if (readings.size() != 0) {
     Reading maxWind = readings.stream().max(Comparator.comparing(Reading::getWindSpeed)).get();
-
     return maxWind.getWindSpeed();
+  }else return 0.0;
   }
 
   public double minWind() {
+    if (readings.size() != 0) {
     Reading minWind = readings.stream().min(Comparator.comparing(Reading::getWindSpeed)).get();
-
     return minWind.getWindSpeed();
+    }else return 0.0;
   }
 
   public double maxPressure() {
+    if (readings.size() != 0) {
     Reading maxPressure = readings.stream().max(Comparator.comparing(Reading::getPressure)).get();
-
     return maxPressure.getPressure();
+    }else return 0.0;
   }
 
   public double minPressure() {
+    if (readings.size() != 0) {
     Reading minPressure = readings.stream().min(Comparator.comparing(Reading::getPressure)).get();
-
     return minPressure.getPressure();
+    }else return 0.0;
   }
 
 }
