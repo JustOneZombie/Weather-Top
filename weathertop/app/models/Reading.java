@@ -10,7 +10,7 @@ public class Reading extends Model {
   public double temperature;
   public double windSpeed;
   public double pressure;
-  public double  windDirection;
+  public double windDirection;
 
   public Reading(int code, double temperature, double windSpeed, double windDirection, double pressure) {
     this.temperature = temperature;
@@ -21,7 +21,9 @@ public class Reading extends Model {
 
   }
 
-  public int getCode() {return code;}
+  public int getCode() {
+    return code;
+  }
 
   public double getTemp() {
     return temperature;
@@ -35,5 +37,7 @@ public class Reading extends Model {
     return pressure;
   }
 
-  public double getWindDirection() {return windDirection;}
+  public double getWindDirection() {
+    return windDirection;
+  }
 }

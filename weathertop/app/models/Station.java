@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,8 +24,15 @@ public class Station extends Model {
   public String windOutput;
   public String windDirection;
   public double windChill;
-  //CONSTRUCTORS
+  public String iconCode;
+  public double maxTemp;
+  public double minTemp;
+  public double maxWind;
+  public double minWind;
+  public double maxPressure;
+  public double minPressure;
 
+  //CONSTRUCTORS
   public Station(String name) {
     this.name = name;
   }
@@ -35,30 +43,72 @@ public class Station extends Model {
     this.codeOutput = weatherCode();
     return codeOutput;
   }
+
   public double getFarOutput() {
     this.tempFar = getTempFar();
     return tempFar;
   }
+
   public double getCelOutput() {
     this.tempCel = getTempCel();
     return tempCel;
   }
+
   public String getWindOutput() {
     this.windOutput = windCode();
     return windOutput;
   }
-  public double getLatestPressure(){
+
+  public double getLatestPressure() {
     this.latestPressure = latestPressure();
     return latestPressure;
   }
+
   public String getWindDirection() {
     this.windDirection = windDirection();
     return windDirection;
   }
-  public double getWindChill(){
+
+  public double getWindChill() {
     this.windChill = windChill();
     return windChill;
   }
+
+  public String getIconCode() {
+    this.iconCode = weatherIcon();
+    return iconCode;
+  }
+
+  public double getMaxTemp() {
+    this.maxTemp = maxTemp();
+    return maxTemp;
+  }
+
+  public double getMinTemp() {
+    this.minTemp = minTemp();
+    return minTemp;
+  }
+
+  public double getMaxWind() {
+    this.maxWind = maxWind();
+    return maxWind;
+  }
+
+  public double getMinWind() {
+    this.minWind = minWind();
+    return minWind;
+  }
+
+  public double getMaxPressure() {
+    this.maxPressure = maxPressure();
+    return maxPressure;
+  }
+
+  public double getMinPressure() {
+    this.minPressure = minPressure();
+    return minPressure;
+  }
+
   //METHODS
 
   public Reading getLatestReading() {
@@ -69,7 +119,7 @@ public class Station extends Model {
 
   public String weatherCode() {
     String codeOutput = "null";
-    if (readings.size()!=0) {
+    if (readings.size() != 0) {
       Reading reading = getLatestReading();
       int code = reading.code;
       if (code == 100) codeOutput = "Clear";
@@ -85,19 +135,21 @@ public class Station extends Model {
     return codeOutput;
 
   }
+
   public double getTempCel() {
     double temp = 0.0;
-    if (readings.size()!=0) {
+    if (readings.size() != 0) {
       Reading reading = getLatestReading();
       temp = reading.temperature;
     }
     return temp;
   }
+
   public double getTempFar() {
     double temp = 0.0;
-    if (readings.size()!=0) {
+    if (readings.size() != 0) {
       Reading reading = getLatestReading();
-      temp = (reading.temperature * 9.5) + 32;
+      temp = (reading.temperature * 9 / 5) + 32;
     }
     return temp;
   }
@@ -105,7 +157,7 @@ public class Station extends Model {
   public String windCode() {
     double code = 0.0;
     String windOutput = "null";
-    if (readings.size()!=0) {
+    if (readings.size() != 0) {
       Reading reading = getLatestReading();
       code = reading.windSpeed;
       windOutput = "null";
@@ -127,18 +179,20 @@ public class Station extends Model {
     }
     return windOutput;
   }
+
   public double latestPressure() {
     double pressure = 0.0;
-    if (readings.size()!=0) {
+    if (readings.size() != 0) {
       Reading reading = getLatestReading();
       pressure = reading.pressure;
     }
-      return pressure;
+    return pressure;
   }
+
   public String windDirection() {
     double code = 0.0;
     String windDirection = "null";
-    if (readings.size()!=0) {
+    if (readings.size() != 0) {
       Reading reading = getLatestReading();
       code = reading.windDirection;
       windDirection = "null";
@@ -165,9 +219,10 @@ public class Station extends Model {
     }
     return windDirection;
   }
+
   public double windChill() {
     double windChill = 0.0;
-    if (readings.size()!=0) {
+    if (readings.size() != 0) {
       windChill = 0.0;
       Reading reading = getLatestReading();
       double temp = reading.temperature;
@@ -178,4 +233,60 @@ public class Station extends Model {
     }
     return windChill;
   }
+
+  public String weatherIcon() {
+    String iconCode = "null";
+    if (readings.size() != 0) {
+      Reading reading = getLatestReading();
+      int code = reading.code;
+      if (code == 100) iconCode = "sun icon";
+      else if (code == 200) iconCode = "cloud sun icon";
+      else if (code == 300) iconCode = "cloud icon";
+      else if (code == 400) iconCode = "cloud rain icon";
+      else if (code == 500) iconCode = "cloud showers heavy icon";
+      else if (code == 600) iconCode = "cloud rain icon";
+      else if (code == 700) iconCode = "snowflake outline icon";
+      else if (code == 800) iconCode = "bolt icon";
+      else iconCode = "null";
+    }
+    return iconCode;
+  }
+
+  //Min-Max Methods
+  public double maxTemp() {
+    Reading maxTemp = readings.stream().max(Comparator.comparing(Reading::getTemp)).get();
+
+    return maxTemp.getTemp();
+  }
+
+  public double minTemp() {
+    Reading minTemp = readings.stream().min(Comparator.comparing(Reading::getTemp)).get();
+
+    return minTemp.getTemp();
+  }
+
+  public double maxWind() {
+    Reading maxWind = readings.stream().max(Comparator.comparing(Reading::getWindSpeed)).get();
+
+    return maxWind.getWindSpeed();
+  }
+
+  public double minWind() {
+    Reading minWind = readings.stream().min(Comparator.comparing(Reading::getWindSpeed)).get();
+
+    return minWind.getWindSpeed();
+  }
+
+  public double maxPressure() {
+    Reading maxPressure = readings.stream().max(Comparator.comparing(Reading::getPressure)).get();
+
+    return maxPressure.getPressure();
+  }
+
+  public double minPressure() {
+    Reading minPressure = readings.stream().min(Comparator.comparing(Reading::getPressure)).get();
+
+    return minPressure.getPressure();
+  }
+
 }
